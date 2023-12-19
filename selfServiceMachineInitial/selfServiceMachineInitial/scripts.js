@@ -68,18 +68,19 @@ let products = [
     quantity: 0,
   },
 ];
-const move = () => {
-  updateElements();
-};
-setInterval(move, 200);
+
+defineElements();
 function substractProduct(){
   products[0].quantity++;
   // var productElement = button.closest('.product')
 }
 
 function addProduct(){
-
+  let productElement = button.closest('.product')
+  let productQuantityElement = button.closest('.')
+  productElement.className = "product selected"
 }
+
 
 function defineElements(){
   let section = document.getElementsByClassName('items')
@@ -88,6 +89,7 @@ function defineElements(){
   products.forEach(v => {
     let productItem = document.createElement("div");
     productItem.className = "product";
+    productItem.onclick = "addProduct()"
     item.appendChild(productItem);
 
     let photoDiv = document.createElement("div");
@@ -102,7 +104,7 @@ function defineElements(){
     descriptionDiv.className = "description";
     productItem.appendChild(descriptionDiv);
 
-    nameSpan = document.createElement("span");
+    let nameSpan = document.createElement("span");
     nameSpan.className = "name";
     nameSpan.textContent = v.name
     descriptionDiv.appendChild(nameSpan);
@@ -114,31 +116,27 @@ function defineElements(){
 
     let quantityareaDiv = document.createElement("div");
     quantityareaDiv.className = "quantity-area";
+    quantityareaDiv.style.visibility = 'hidden'
     descriptionDiv.appendChild(quantityareaDiv);
 
     let minusButton = document.createElement("button");
     minusButton.onclick = "substractProduct()";
     minusButton.textContent = "-"
+    minusButton.style.visibility = 'hidden'
     quantityareaDiv.appendChild(minusButton);
 
     let quantitySpan = document.createElement("span");
     quantitySpan.className = "quantity";
     quantitySpan.textContent = v.quantity;
+    quantitySpan.style.visibility = 'hidden'
     quantityareaDiv.appendChild(quantitySpan);
 
     let plusButton = document.createElement("button");
     plusButton.onclick = "addProduct()";
     plusButton.textContent = "+"
+    plusButton.style.visibility = 'hidden'
     quantityareaDiv.appendChild(plusButton);
 });
 }
 
-function updateElements(){
-  nameSpan = document.getElementsByClassName("name");
-  priceSpan = document.getElementsByClassName("price");
-  quantitySpan = document.getElementsByClassName("quantity")
-  products.forEach(v => {
-    
-  })
-
-}
+console.log(productElements= document.querySelectorAll('.product'));
